@@ -24,13 +24,13 @@ A simple Pomodoro Timer application with work and break intervals, notifications
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/JorkDev/pomoapp.git
+git clone https://github.com/JorkDev/pomoapp
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd pomodoro-timer-app
+cd pomoapp
 ```
 
 3. Open the `index.html` file in your web browser to start using the Pomodoro Timer.
