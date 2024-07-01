@@ -1,5 +1,5 @@
 
-# Pomodoro Timer App
+# Pomo Timer App
 
 A simple Pomodoro Timer application with work and break intervals, notifications, and animations.
 
@@ -24,7 +24,7 @@ A simple Pomodoro Timer application with work and break intervals, notifications
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/pomodoro-timer-app.git
+git clone https://github.com/JorkDev/pomoapp.git
 ```
 
 2. Navigate to the project directory:
