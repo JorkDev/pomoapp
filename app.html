@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="timer" id="timer">25:00</div>
+    <button id="startStopBtn">Start</button>
+    <div class="settings">
+        <label for="workInterval">Work Interval (minutes):</label>
+        <input type="number" id="workInterval" value="25">
+        <label for="breakInterval">Break Interval (minutes):</label>
+        <input type="number" id="breakInterval" value="5">
+        <button id="saveSettingsBtn">Save Settings</button>
+    </div>
+    <audio id="workEndSound" src="work_end_sound.mp3"></audio>
+    <audio id="breakEndSound" src="break_end_sound.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
