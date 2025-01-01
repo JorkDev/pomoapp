@@ -35,6 +35,7 @@ function startTimer() {
         clearInterval(timer);
         isRunning = false;
         startStopBtn.textContent = 'Start';
+        savePauseTime(); // Save the time when paused
     } else {
         isRunning = true;
         startStopBtn.textContent = 'Stop';
@@ -50,6 +51,17 @@ function startTimer() {
             }
         }, 1000);
     }
+}
+
+function savePauseTime() {
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = currentTime % 60;
+    const formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    const savedTimes = JSON.parse(localStorage.getItem('savedTimes')) || [];
+    if (savedTimes.length >= 5) savedTimes.shift();
+    savedTimes.push(`Paused: ${formattedTime}`);
+    localStorage.setItem('savedTimes', JSON.stringify(savedTimes));
+    displaySavedTimes();
 }
 
 function switchInterval() {
