@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="realTimeClock" class="clock">Loading...</div>
     <div class="timer" id="timer">25:00</div>
     <button id="startStopBtn">Start</button>
     <div class="settings">
@@ -15,6 +16,11 @@
         <label for="breakInterval">Break Interval (minutes):</label>
         <input type="number" id="breakInterval" value="5">
         <button id="saveSettingsBtn">Save Settings</button>
+    </div>
+    <div id="savedTimes" class="saved-times">
+        <h3>Saved Times:</h3>
+        <ul id="timesList"></ul>
+        <button id="clearTimesBtn">Clear Times</button>
     </div>
     <audio id="workEndSound" src="work_end_sound.mp3"></audio>
     <audio id="breakEndSound" src="break_end_sound.mp3"></audio>

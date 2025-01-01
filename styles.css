@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     display: flex;
     justify-content: center;
@@ -8,6 +7,11 @@ body {
     font-family: Arial, sans-serif;
     background-color: #282c34;
     color: #61dafb;
+}
+
+.clock {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 .timer {
@@ -65,4 +69,20 @@ button:hover {
 
 .settings button {
     margin-top: 20px;
+}
+
+.saved-times {
+    margin-top: 20px;
+}
+
+.saved-times ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.saved-times li {
+    background-color: #444;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
 }

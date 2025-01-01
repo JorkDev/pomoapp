@@ -1,4 +1,3 @@
-// script.js
 let timer;
 let isRunning = false;
 let isWorkInterval = true;
@@ -13,12 +12,23 @@ const breakEndSound = document.getElementById('breakEndSound');
 const workIntervalInput = document.getElementById('workInterval');
 const breakIntervalInput = document.getElementById('breakInterval');
 const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+const realTimeClock = document.getElementById('realTimeClock');
+const savedTimesList = document.getElementById('timesList');
+const clearTimesBtn = document.getElementById('clearTimesBtn');
 
 function updateTimerDisplay() {
     const minutes = Math.floor(currentTime / 60);
     const seconds = currentTime % 60;
     timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
+
+function updateRealTimeClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    realTimeClock.textContent = timeString;
+}
+setInterval(updateRealTimeClock, 1000);
+updateRealTimeClock();
 
 function startTimer() {
     if (isRunning) {
@@ -35,6 +45,7 @@ function startTimer() {
             } else {
                 clearInterval(timer);
                 notifyUser();
+                saveTime(isWorkInterval ? 'Work' : 'Break');
                 switchInterval();
             }
         }, 1000);
@@ -61,6 +72,8 @@ function notifyUser() {
 function saveSettings() {
     workTime = parseInt(workIntervalInput.value) * 60;
     breakTime = parseInt(breakIntervalInput.value) * 60;
+    localStorage.setItem('workInterval', workIntervalInput.value);
+    localStorage.setItem('breakInterval', breakIntervalInput.value);
     if (isWorkInterval) {
         currentTime = workTime;
     } else {
@@ -69,6 +82,32 @@ function saveSettings() {
     updateTimerDisplay();
 }
 
+function saveTime(type) {
+    const savedTimes = JSON.parse(localStorage.getItem('savedTimes')) || [];
+    if (savedTimes.length >= 5) savedTimes.shift();
+    const now = new Date();
+    savedTimes.push(`${type}: ${now.toLocaleTimeString()}`);
+    localStorage.setItem('savedTimes', JSON.stringify(savedTimes));
+    displaySavedTimes();
+}
+
+function displaySavedTimes() {
+    const savedTimes = JSON.parse(localStorage.getItem('savedTimes')) || [];
+    savedTimesList.innerHTML = savedTimes.map(time => `<li>${time}</li>`).join('');
+}
+
+function clearSavedTimes() {
+    localStorage.removeItem('savedTimes');
+    displaySavedTimes();
+}
+
 startStopBtn.addEventListener('click', startTimer);
 saveSettingsBtn.addEventListener('click', saveSettings);
+clearTimesBtn.addEventListener('click', clearSavedTimes);
+displaySavedTimes();
+
+// Load saved settings
+workIntervalInput.value = localStorage.getItem('workInterval') || 25;
+breakIntervalInput.value = localStorage.getItem('breakInterval') || 5;
+saveSettings();
 updateTimerDisplay();
